@@ -295,7 +295,7 @@
     </div>
 
     <!-- Join Team Modal  -->
-    <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -306,7 +306,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <div id="cursor" class="cursor"></div>
 
     <!-- JS -->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -315,6 +317,54 @@
     <script src="plugins/owlCarousel/owl.carousel.min.js"></script>
     <script src="plugins/animation/wow.min.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        let social = document.querySelector('.social a');
+        let client = document.querySelector('.client');
+        let menuBtn = document.querySelector('.menuBtn');
+
+        document.addEventListener('mousemove', e => {
+            window.requestAnimationFrame(() => {
+                cursor.style.top = `${ e.clientY - cursor.offsetHeight/2 }px`;
+                cursor.style.left = `${ e.clientX - cursor.offsetWidth/2 }px`;
+                cursor.style.display = 'block'
+            });
+        });
+
+        $('.social a').mouseenter(function (e) {
+            cursor.style.width =  (social.offsetHeight + 2)+'px';
+            cursor.style.height = (social.offsetWidth+ 2)+'px';
+            cursor.classList.add('outline');
+        });
+
+        $('.social a').mouseleave(function (e) {
+            cursor.classList.remove('outline')
+        });
+
+        $('.menuBtn').mouseenter(function (e) {
+            cursor.style.width =  (menuBtn.offsetHeight + 2)+'px';
+            cursor.style.height = (menuBtn.offsetWidth + 2)+'px';
+        });
+
+        $('.primaryBtn , .language').mouseenter(function (e) {
+            cursor.classList.add('circle');
+        });
+
+        $('.primaryBtn , .language').mouseleave(function (e) {
+            cursor.classList.remove('circle')
+        });
+
+        $('.client').mouseenter(function (e) {
+            cursor.style.width =  (client.offsetHeight)+'px';
+            cursor.style.height = (client.offsetWidth)+'px';
+        });
+
+        $('.client , .menuBtn , .social a').mouseleave(function (e) {
+            cursor.style.width =  '30px';
+            cursor.style.height = '30px';
+        });
+    </script>
 
 </body>
 </html>

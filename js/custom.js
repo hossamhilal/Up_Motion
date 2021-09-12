@@ -77,13 +77,16 @@
         navText: ["<i class='icofont-long-arrow-right'></i>", "<i class='icofont-long-arrow-left'></i>"],
         responsive: {
             0: {
-                items: 2
+                items: 3,
+                dotsEach: 3
             },
             600: {
-                items: 4
+                items: 4,
+                dotsEach: 3
             },
             1000: {
-                items: 6
+                items: 6 ,
+                dotsEach: 3
             }
         }
     });
