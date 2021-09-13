@@ -1,30 +1,30 @@
 /*global $ */
-(function($) {
+(function ($) {
     "use strict";
 
     // OPEN SIDE  MENU 
-    $('.menuBtn').on('click', function(){
+    $('.menuBtn').on('click', function () {
         $(this).toggleClass('open');
         $('.mainMenu').addClass('show');
-        $('.navOverlay').addClass('show');  
-        setTimeout(function(){
+        $('.navOverlay').addClass('show');
+        setTimeout(function () {
             $('body').addClass('stopScroll');
-        }, 200); 
+        }, 200);
     });
 
     // CLOSE SIDE MENU 
-    $('.closeMenu').on('click', function(){
-        $('.mainMenu').removeClass('show');  
-        $('.navOverlay').removeClass('show');  
+    $('.closeMenu').on('click', function () {
+        $('.mainMenu').removeClass('show');
+        $('.navOverlay').removeClass('show');
         $('.menuBtn').removeClass('open');
-        $('body').removeClass('stopScroll');  
+        $('body').removeClass('stopScroll');
     });
 
     // Scroll Menu
     $('.mainMenu a').on('click', function (e) {
         e.preventDefault();
         $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top 
+            scrollTop: $($(this).attr('href')).offset().top
         }, 1200, 'linear');
         $('.mainMenu').removeClass('show');
         $('.navOverlay').removeClass('show');
@@ -34,7 +34,7 @@
     });
 
     // Check if Rtl 
-    var rtlVal = true ;   
+    var rtlVal = true;
     $('body').hasClass('en') ? rtlVal = false : rtlVal = true;
 
     // Header OWL 
@@ -45,9 +45,9 @@
         loop: true,
         nav: false,
         dots: true,
-        autoplaySpeed : 2000,
-        autoplayTimeout : 2000,
-        smartSpeed: 2000 ,
+        autoplaySpeed: 2000,
+        autoplayTimeout: 2000,
+        smartSpeed: 2000,
         navText: ["<i class='icofont-long-arrow-right'></i>", "<i class='icofont-long-arrow-left'></i>"],
         responsive: {
             0: {
@@ -71,9 +71,9 @@
         loop: true,
         nav: false,
         dots: true,
-        autoplaySpeed : 2000,
-        autoplayTimeout : 2000,
-        smartSpeed: 2000 ,
+        autoplaySpeed: 2000,
+        autoplayTimeout: 2000,
+        smartSpeed: 2000,
         navText: ["<i class='icofont-long-arrow-right'></i>", "<i class='icofont-long-arrow-left'></i>"],
         responsive: {
             0: {
@@ -85,7 +85,7 @@
                 dotsEach: 3
             },
             1000: {
-                items: 6 ,
+                items: 6,
                 dotsEach: 3
             }
         }
@@ -93,6 +93,21 @@
 
     // iniat WOW Js
     new WOW().init();
-   
+
+    // Image Animation 
+    document.getElementById("mainSquare").addEventListener("webkitAnimationStart", function () {
+        setTimeout(function () {
+            document.getElementsByClassName('hiddenImage')[0].style.visibility = 'visible';
+            setTimeout(function () {
+                document.getElementsByClassName('imageCaption')[0].style.opacity = 1;
+            }, 1000);
+        }, 2400);
+    });
+
+    // Close Video On Modal
+    $("#videoModal").on('hidden.bs.modal', function (e) {
+        $("#videoModal iframe").attr("src", $("#videoModal iframe").attr("src"));
+    });
+
 })(jQuery);
 
