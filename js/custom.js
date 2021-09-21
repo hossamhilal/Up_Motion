@@ -2,18 +2,18 @@
 (function ($) {
     "use strict";
 
-    // OPEN SIDE  MENU 
-    $('.menuBtn').on('click', function () {
-        $(this).toggleClass('open');
+     // OPEN SIDE  MENU 
+     $('.menuToggle').on('click', function () {
+        $('.menuBtn').toggleClass('open');
         $('.mainMenu').addClass('show');
         $('.navOverlay').addClass('show');
         setTimeout(function () {
             $('body').addClass('stopScroll');
-        }, 200);
+        }, 50);
     });
 
     // CLOSE SIDE MENU 
-    $('.closeMenu').on('click', function () {
+    $('.closeMenu , .navOverlay').on('click', function () {
         $('.mainMenu').removeClass('show');
         $('.navOverlay').removeClass('show');
         $('.menuBtn').removeClass('open');
@@ -63,7 +63,7 @@
     });
 
 
-    // Header OWL 
+    // Clients OWL 
     $('.owlClients').owlCarousel({
         rtl: rtlVal,
         margin: 0,
@@ -90,19 +90,30 @@
             }
         }
     });
+    
+    // Menu Btn Fixed
+    // var fixmeTop = $('.about').offset().top;  
+    $(window).scroll(function() {   
+        var currentScroll = $(window).scrollTop(); 
+        currentScroll >= 500 ? $('.menuToggle').addClass('sticky') :  $('.menuToggle').removeClass('sticky');
+    });
 
     // iniat WOW Js
     new WOW().init();
 
     // Image Animation 
-    document.getElementById("mainSquare").addEventListener("webkitAnimationStart", function () {
+    let elements = document.querySelectorAll('.square');
+
+    var myAnimate = function(el) {
         setTimeout(function () {
-            document.getElementsByClassName('hiddenImage')[0].style.visibility = 'visible';
-            setTimeout(function () {
-                document.getElementsByClassName('imageCaption')[0].style.opacity = 1;
-            }, 1000);
-        }, 2400);
-    });
+            el.style.visibility = 'visible';
+        }, 2000);
+    };
+    
+    for (var i = 0; i < elements.length; i++) {
+        let el = elements[i].previousElementSibling;
+        elements[i].addEventListener('webkitAnimationStart', myAnimate(el), false);
+    }
 
     // Close Video On Modal
     $("#videoModal").on('hidden.bs.modal', function (e) {

@@ -230,10 +230,10 @@ textarea:active {
     background: url('../images/dots.png') no-repeat;
     background-size: contain;
     position: absolute;
-    right: -17%;
-    top: -24%;
-    width: 31%;
-    height: 51%;
+    right: -26%;
+    top: -31%;
+    width: 41%;
+    height: 65%;
     animation: scale 3s ease-in-out infinite alternate;
 }
 
@@ -259,6 +259,31 @@ textarea:active {
 .menuToggle {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.menuToggle.sticky {
+    position: fixed;
+    top: 30px;
+    z-index:97;
+}
+
+.ar .sticky {
+    right: 30px; 
+}
+
+.en .sticky {
+    left: 30px; 
+}
+
+.menuToggle label {
+    margin: 0;
+    margin-inline-start: 15px;
+    cursor: pointer;
+}
+
+.sticky label {
+    color: var(--primaryColor);
 }
 
 .menuBtn {
@@ -271,10 +296,8 @@ textarea:active {
     height: 45px;
     border-radius: 50%;
     padding: 10px 9px;
-}
-
-.menuBtn {
     position: relative;
+    transition: all .5s ease-in-out;
 }
 
 .menuBtn span,
@@ -312,12 +335,6 @@ textarea:active {
     transform: rotate(90deg);
 }
 
-
-.menuToggle label {
-    margin: 0;
-    margin-inline-start: 15px;
-}
-
 .language {
     width: 130px;
     background: var(--blue);
@@ -338,6 +355,18 @@ textarea:active {
 }
 
 .language:hover a {
+    color: var(--white);
+}
+
+.internalHeader {
+    background: var(--bg);
+}
+
+.breadcrumb-area {
+    color: var(--primaryColor);
+}
+
+.breadcrumb-area a {
     color: var(--white);
 }
 
@@ -441,7 +470,9 @@ textarea:active {
     visibility: hidden;
     transition: all .7s ease-in-out;
 }
-
+.logo img{
+    max-height:65px;
+}
 .navOverlay.show {
     opacity: 1;
     visibility: visible;
@@ -735,10 +766,6 @@ textarea:active {
     color: var(--white);
 }
 
-.services {
-    min-height: 620px;
-}
-
 .service {
     display: flex;
     align-items: center;
@@ -746,10 +773,8 @@ textarea:active {
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    height: 100%;
-    transition: all 1s ease-in-out;
+    height: 370px;
     border-radius: 25px;
-    min-height: 365px;
 }
 
 .service:hover {
@@ -779,11 +804,10 @@ textarea:active {
 }
 
 .service:hover h3 {
-    color: var(--secondaryColor);
+    color: var(--primaryColor);
 }
 
 .service p {
-    margin-bottom: 25px;
     margin-bottom: 25px;
     overflow: hidden;
     -webkit-line-clamp: 3;
@@ -792,12 +816,12 @@ textarea:active {
     display: none;
 }
 
-.service:hover p {
-    display: -webkit-box;
-}
-
 .service .primaryBtn {
     display: none;
+}
+
+.service:hover p {
+    display: -webkit-box;
 }
 
 .service:hover .primaryBtn {
@@ -805,13 +829,9 @@ textarea:active {
 }
 
 @media screen and (max-width:768px) {
-    .services {
-        min-height: auto;
-    }
-
     .service {
         padding: 10px;
-        min-height: auto;
+        height: auto;
     }
 
     .serviceIcon {
@@ -888,6 +908,48 @@ textarea:active {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.playVideo {
+    width: 70px;
+    height: 70px;
+    background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 25px;
+    color: var(--white);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.playVideo:hover {
+    background: var(--primaryColor);
+}
+
+.playVideo::before {
+    content: '';
+    background: var(--blue);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 0;
+    -webkit-animation: pulse-border 1500ms ease-out infinite;
+    animation: pulse-border 1500ms ease-out infinite;
+}
+
+.playVideo:hover::before {
+    background: var(--primaryColor);
+}
+
+.playVideo span {
+    position: relative;
+    z-index: 2;
 }
 
 .more {
@@ -1035,6 +1097,48 @@ textarea:active {
         transform: translatey(0px);
     }
 }
+
+@-webkit-keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-20px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+@keyframes pulse-border {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.75);
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes pulse-border {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.75);
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+
 
 @media (min-width:768px) {
     .work:nth-child(even) .row {
@@ -1273,10 +1377,14 @@ textarea:active {
     font-size: 25px;
 }
 
-.link label {
-    margin: 0;
+.link a {
+    color: var(--text);
     font-size: 16px;
     font-weight: 600;
+}
+
+.link a:hover {
+   color: var(--primaryColor); 
 }
 
 
@@ -1322,6 +1430,7 @@ textarea:active {
     width: 40%;
     height: 184%;
     animation: scale 3s ease-in-out infinite alternate;
+    z-index: 0;
 }
 
 @keyframes scale {
@@ -1334,16 +1443,21 @@ textarea:active {
     }
 }
 
-
 .footer .logo {
+    position: relative;
     margin: auto;
-    display: block;
-    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 180px;
     margin-bottom: 20px;
+    z-index: 1;
 }
 
 .footer p {
+    position: relative;
     color: var(--white);
+    z-index: 1;
 }
 
 .footer a {
@@ -1385,6 +1499,22 @@ textarea:active {
 /*==========================||           Modal           ||========================*/
 /*==========================||---------------------------||========================*/
 
+.modal .close {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    background: var(--black);
+    z-index: 5;
+    color: var(--white);
+    opacity: 1;
+    font-size: 28px;
+}
+
+.modal .close:hover {
+    background: var(--primaryColor);
+}
 
 .videoPlayer iframe {
     width: 100%;
@@ -1523,7 +1653,6 @@ textarea:active {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-
 
 
 
